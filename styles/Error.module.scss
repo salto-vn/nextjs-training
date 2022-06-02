@@ -1,0 +1,22 @@
+%errorPage {
+  height : 90vh;
+}
+
+.onError{
+  background-color: rgb(136, 202, 202);
+  @extend %errorPage
+}
+
+.containerError{
+  flex-flow: row;
+  justify-content: center;
+  text-align: center;
+}
+
+.contentError{
+  padding-top : 20vh;
+}
+
+.textError{
+  margin-top: 5vh
+}
