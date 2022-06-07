@@ -4,7 +4,7 @@ const nextConfig = {
   reactStrictMode: true,
   compiler: {
     styledComponents: true, // ssr and displayName are configured by default
-    removeConsole: { exclude: ['error'], }, // remove console.* except console.error - in project ( not includes node_modules )
+    removeConsole: { exclude: ['error', 'log'], }, // remove console.* except console.error - in project ( not includes node_modules ) ( won't show in browser)
   },
 
   // Modularize Imports ( more : https://nextjs.org/docs/advanced-features/compiler#modularize-imports)

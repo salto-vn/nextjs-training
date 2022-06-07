@@ -1,4 +1,6 @@
+export default function ContactUs() {
+  return <>
+    <h3>Contact us page</h3>
+  </>
 
-export default function ContactUs(){
-  return <>Contact us page</>
 }

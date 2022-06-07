@@ -1,12 +1,14 @@
-import Link from "next/link";
-import styles from '../../styles/Navbar.module.scss';
+import Link from "next/link"
+import LoginForm from "../login"
 
 export default function Navbar() {
+
   return <>
-    <div className={styles.navbarDefault}> test using styles </div>
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">Navbar</a>
+        <Link href="/" >
+          <a className="navbar-brand" >HOME</a>
+        </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -14,7 +16,7 @@ export default function Navbar() {
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
               <Link href="/about" >
-                <a className="nav-link active" aria-current="page">About Me</a>
+                <a className="nav-link" aria-current="page">About Me</a>
               </Link>
             </li>
             <li className="nav-item">
@@ -46,9 +48,17 @@ export default function Navbar() {
                 <a className="nav-link">Custom Error Page</a>
               </Link>
             </li>
+
+            <li className="nav-item">
+              <Link href="/login" >
+                <a className="nav-link">Login with form</a>
+              </Link>
+            </li>
           </ul>
+          <LoginForm />
         </div>
       </div>
     </nav>
+
   </>
 }

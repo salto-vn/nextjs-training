@@ -5,7 +5,7 @@ export default function Document() {
     <Html lang="en">
       <Head />
       <body>
-        <p> Custom Document  </p>
+        {/* <b> Custom Document  </b> */}
         <Main /> {/* is index.tsx */}
         <NextScript />
       </body>
