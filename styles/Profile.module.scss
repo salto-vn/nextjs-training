@@ -1,0 +1,22 @@
+.avatarImage img {
+  border-radius: 50%;
+}
+
+.profilesBar {
+  display: flex;
+  height: 68px;
+  line-height: 48px;
+  padding: 10px 5px;
+  box-sizing: border-box;
+}
+
+.profilesBar:hover {
+  background-color: rgb(222, 222, 222);
+  border-radius: 10px;
+  transition: 1s ease all;
+  cursor: pointer;
+}
+
+.userName {
+  margin-left: 20px;
+}

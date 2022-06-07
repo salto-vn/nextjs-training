@@ -1,0 +1,50 @@
+.wrapper {
+  background-color: #eaeaea;
+  border-radius: 20px;
+}
+
+.imagePostNews img{
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.rowPostNews {
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.textAreaContent {
+  border: none;
+  box-shadow: unset;
+  border-radius: 50px;
+  padding: 10px;
+  padding-left: 20px;
+  overflow-y: hidden;
+  font-size: 17px;
+  line-height: 20px !important;
+}
+
+.textAreaContent:focus {
+  outline: none;
+  box-shadow: unset;
+}
+
+.icon {
+  margin-right: 5px;
+  font-size: 20px;
+}
+.videok {
+  color: red
+}
+
+.image {
+  color: orange
+}
+
+.smile {
+  color: green
+}
+
+
+.textAfter {
+  font-size: 20px;
+}
