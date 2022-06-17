@@ -1,3 +1,6 @@
+// const nextTranslate = require('next-translate')
+const { i18n } = require('./next-i18next.config')
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   swcMinify: true, // minification , 7x faster than Terser ( Terser is a js parser, more : https://github.com/terser/terser )
@@ -31,6 +34,15 @@ const nextConfig = {
     SERVER_API: process.env.SERVER_API,
     PUBLIC_URL: process.env.PUBLIC_URL,
   },
+  i18n: {
+    // These are all the locales you want to support in
+    // your application
+    locales: ['en-US', 'vi-VN', 'jp-JP'],
+    // This is the default locale you want to be used when visiting
+    // a non-locale prefixed path e.g. `/hello`
+    defaultLocale: 'en-US',
+  },
 }
 
+// module.exports = nextTranslate()
 module.exports = nextConfig

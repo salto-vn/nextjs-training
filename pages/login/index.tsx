@@ -1,11 +1,12 @@
-import { useState } from "react"
+import { ILogin } from "../../typing"
 
-export default function LoginBackendForm({ user }) {
+
+export default function LoginBackendForm({ user }: { user: ILogin }) {
   return <>Login from backend page {user.isLoggedin ? "YES" : "NO"}</>
 }
 
 
-export async function getServerSideProps(context) {
+export async function getServerSideProps(context: any) {
   return {
     props: {
       user: {

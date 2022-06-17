@@ -5,9 +5,9 @@ import { useRouter } from "next/router"
 import { setTokenLocalStorage } from "../../utils/utils"
 import Image from "next/image"
 import GoogleSVG from '../../public/google.svg'
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from "firebase/auth"
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth"
 import { auth } from "../../config/config"
-
+const provider = new GoogleAuthProvider()
 
 export default function LoginForm() {
   const router = useRouter()
@@ -64,19 +64,22 @@ export default function LoginForm() {
   }
 
   const handleGoogleLogin = () => {
-    var provider = new GoogleAuthProvider()
-    signInWithPopup(auth, provider).then(() => {
-      toggleModal()
-      Swal.fire({
-        text: 'Login success!',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 1000,
-        timerProgressBar: true,
-      }).finally(() => {
-        router.push('/dataDummy')
+
+    signInWithPopup(auth, provider)
+      .then(() => {
+        toggleModal()
+        Swal.fire({
+          text: 'Login success!',
+          icon: 'success',
+          showConfirmButton: false,
+          timer: 1000,
+          timerProgressBar: true,
+        }).finally(() => {
+          router.push('/dataDummy')
+        })
+      }).catch(function (error) {
+        console.error(error)
       })
-    })
   }
 
   const modalHeader = <>

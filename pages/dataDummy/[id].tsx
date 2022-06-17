@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 
-export default function DetailDummy({ detailData }) {
+export default function DetailDummy({ detailData }: { detailData: any }) {
   const router = useRouter()
   const { query: { id } } = router
   return <>
@@ -21,7 +21,6 @@ export async function getStaticProps(context: any) {
   const { id } = context.params
   const res = await fetch(`https://dummyjson.com/products/${id}`, { method: 'GET' })
   const detailData = await res.json()
-  console.log("detailData ===", detailData)
   return {
     props: {
       detailData

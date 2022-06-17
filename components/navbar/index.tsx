@@ -1,10 +1,25 @@
 import Link from "next/link"
 import LoginForm from "../login"
+import ThemeChanger from "../theme"
+import { useTheme } from 'next-themes'
+import { useEffect, useState } from "react"
+import LanguageSelection from "../language"
 
 export default function Navbar() {
+  const [mounted, setMounted] = useState(false)
+  const { theme } = useTheme()
+
+  // useEffect only runs on the client, so now we can safely show the UI
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
 
   return <>
-    <nav className="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <nav className={`navbar fixed-top navbar-expand-lg ${theme === 'dark' ? 'navbar-dark bg-primary' : 'navbar-light bg-light'}`}>
       <div className="container-fluid">
         <Link href="/" >
           <a className="navbar-brand" >HOME</a>
@@ -20,8 +35,8 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link href="/about/detail" >
-                <a className="nav-link">Detail</a>
+              <Link href="/about/auth0" >
+                <a className="nav-link">Auth0</a>
               </Link>
             </li>
 
@@ -54,8 +69,16 @@ export default function Navbar() {
                 <a className="nav-link">Login with form</a>
               </Link>
             </li>
+
+            <li className="nav-item">
+              <Link href="/user" >
+                <a className="nav-link">User with redux</a>
+              </Link>
+            </li>
           </ul>
           <LoginForm />
+          <ThemeChanger />
+          <LanguageSelection />
         </div>
       </div>
     </nav>

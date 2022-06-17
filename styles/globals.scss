@@ -6,6 +6,16 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+body {
+  height: 100vh;
+}
+
+[data-theme='dark'],
+[data-theme='dark'] body {
+  // color: #fff;
+  background: #000;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -16,7 +26,7 @@ a {
 }
 
 
-%test-scss{
+%test-scss {
   border: 1px solid #ccc;
   padding: 10px;
   color: red;
@@ -25,4 +35,21 @@ a {
 .test-me {
   @extend %test-scss;
   border-color: red;
+}
+
+.language-select {
+  padding-left: 1em;
+  width: 120px !important;
+}
+
+.theme-switch {
+  padding: 0 1em;
+}
+
+
+main {
+  min-height: 100vh;
+  padding: 5rem 0 !important;
+  justify-content: center;
+  align-items: center;
 }
