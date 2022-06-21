@@ -8,11 +8,15 @@ import useTranslation from 'next-translate/useTranslation'
 import { Auth0Provider } from '@auth0/auth0-react'
 import { Provider } from 'react-redux'
 import { store } from '../app/store'
+import { useEffect } from 'react'
 // import { appWithTranslation } from 'next-i18next'
 
 
 function MyApp({ Component, pageProps }: AppProps) {
   const { lang } = useTranslation()
+  // useEffect(() => {
+  //   import("bootstrap/dist/js/bootstrap")
+  // }, [])
 
   return (
     <Provider store={store}>

@@ -1,0 +1,35 @@
+.fileList {
+  display: flex;
+  margin-top: 1rem;
+  gap: 1rem;
+  width: 400px;
+}
+
+.fileContainer {
+  flex-direction: column;
+  align-items: center;
+}
+
+.fileName {
+  margin-left: 2rem;
+}
+
+.previewContainer {
+  margin: 25px;
+  max-height: 400px;
+  overflow: auto;
+}
+
+.imageContain {
+  position: relative;
+}
+
+.cancelBtn {
+  position: absolute;
+  top: 0px;
+  right: 1px;
+}
+
+.cancelBtn:hover {
+  cursor: pointer;
+}

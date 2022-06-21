@@ -1,4 +1,4 @@
-import { ILogin } from "../../typing"
+import { ILogin } from "../../types"
 
 
 export default function LoginBackendForm({ user }: { user: ILogin }) {
