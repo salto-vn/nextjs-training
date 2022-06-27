@@ -2,12 +2,29 @@ import styles from "styles/Home.module.scss"
 import Image from "next/image"
 import Head from "next/head"
 import { withProtected } from 'src/auth/route'
-import i18n from 'i18next'
 import { useTranslation } from 'react-i18next'
+import { useEffect, useState } from 'react'
+import dynamic from 'next/dynamic'
 
-export function Home ({ auth} : any){
+import type { ReactElement } from 'react'
+import Layout from 'component/Layout';
+import type { NextPageWithLayout } from 'pages/_app';
+
+const DynamicComponent = dynamic(() => import("component/CacComponent"), { ssr: false })
+
+const Home: NextPageWithLayout = ({ auth } : any) => {
   const { t } = useTranslation()
   const { logout } = auth
+
+  const [showChild, setShowChild] = useState(false)
+
+  useEffect(() => {
+    setShowChild(true)
+  }, [])
+
+  if (!showChild) {
+    return null
+  }
   return (
     <>
       <Head>
@@ -17,16 +34,16 @@ export function Home ({ auth} : any){
         <meta name="author" content="John Doe" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <div className={styles.container}>
-        <div className={styles.imageWrap}>
-          <Image src="/logo.svg" alt="Logo" width="330" height="140" priority />
-        </div>
-        <button className="btn btn-primary w-100" onClick={logout}>{ t('logOut') }</button>
-        <p>
-          { t('homeC') }
-        </p>
-      </div>
+       <DynamicComponent />
     </>
+  )
+}
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      {page}
+    </Layout>
   )
 }
 

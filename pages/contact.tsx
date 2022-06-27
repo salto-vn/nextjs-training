@@ -1,7 +1,8 @@
 import Head from "next/head"
 import { useTranslation } from 'react-i18next'
+import { withProtected } from 'src/auth/route'
 
-export default function About() {
+export function Contact({ auth } : any) {
   const { t } = useTranslation()
   return (
     <>
@@ -19,3 +20,5 @@ export default function About() {
     </>
   )
 }
+
+export default withProtected(Contact)

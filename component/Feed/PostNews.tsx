@@ -8,10 +8,12 @@ import {
   faImages,
   faFaceSmile
 } from "@fortawesome/free-solid-svg-icons"
+import { useTranslation } from 'react-i18next'
 
 const { TextArea } = Input;
 
 export default function PostNews() {
+  const { t } = useTranslation()
   return (
     <>
       <div className={clsx(styles.wrapper, "container-fluid", "p-0")}>
@@ -22,7 +24,7 @@ export default function PostNews() {
           <div className="col-10">
             <TextArea
               className={styles.textAreaContent}
-              placeholder="Controlled autosize"
+              placeholder={ t('placeholderPostNew') }
               autoSize={{ minRows: 2, maxRows: 2 }}
             />
           </div>
@@ -31,19 +33,19 @@ export default function PostNews() {
           <div className="col-4 text-center">
           <a className={styles.link}>
               <FontAwesomeIcon icon={faVideo} className={clsx(styles.icon, styles.videok)} />
-              <span className={styles.textAfter}>Create Video</span>
+              <span className={styles.textAfter}>{ t('createVideo') }</span>
             </a>
           </div>
           <div className="col-4 text-center">
           <a className={styles.link}>
               <FontAwesomeIcon icon={faImages} className={clsx(styles.icon, styles.image)} />
-              <span className={styles.textAfter}>Photos/Videos</span>
+              <span className={styles.textAfter}>{ t('photoVideo') }</span>
             </a>
           </div>
           <div className="col-4 text-center">
           <a className={styles.link}>
               <FontAwesomeIcon icon={faFaceSmile} className={clsx(styles.icon, styles.smile)} />
-              <span className={styles.textAfter}>Feeling/Activity</span>
+              <span className={styles.textAfter}>{ t('feelingActivity') }</span>
             </a>
           </div>
         </div>

@@ -1,0 +1,14 @@
+.counterBox h1 {
+  background: -webkit-linear-gradient(rgb(14, 176, 71), rgb(15, 123, 94));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.counter {
+  font-weight: bolder;
+  color: crimson;
+}
+
+.plusButton {
+  margin-right: 15px;
+}

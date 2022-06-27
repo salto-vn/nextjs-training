@@ -6,17 +6,36 @@ import "antd/dist/antd.css"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
 import { useEffect, useState } from "react"
-import { ThemeProvider } from 'next-themes'
+import { ThemeProvider } from '@material-ui/core/styles'
 import "src/config/firebase.config"
 import { AuthProvider } from 'src/auth/auth'
 import AuthStateChanged from 'src/layout/AuthStateChanged'
 import { UserProvider } from "@auth0/nextjs-auth0"
+import { wrapper } from "store/store" 
+
+import { CacheProvider, EmotionCache } from '@emotion/react';
+import { CssBaseline, createTheme } from '@mui/material';
+import createEmotionCache from 'src/createEmotionCache'
+import theme from "styles/theme/lightThemeOptions"
+
+import type { ReactElement, ReactNode } from 'react'
+import type { NextPage } from 'next'
+
+const clientSideEmotionCache = createEmotionCache()
 
 config.autoAddCss = false
 
-function MyApp({ Component, pageProps }: AppProps) {
-  const [showChild, setShowChild] = useState(false)
+export type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
 
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+function MyApp(props: any) {
+  const [showChild, setShowChild] = useState(false)
+  const { Component, emotionCache = clientSideEmotionCache, pageProps} = props
   useEffect(() => {
     setShowChild(true)
   }, [])
@@ -35,20 +54,21 @@ function MyApp({ Component, pageProps }: AppProps) {
   if (typeof window === "undefined") {
     return <></>
   } else {
-    return (
-      <ThemeProvider>
-        <UserProvider>
-          <AuthProvider>
-            <AuthStateChanged>
-              <Layout>
+    const getLayout = Component.getLayout ?? ((page: any) => page)
+    return getLayout(
+      <CacheProvider value={emotionCache}>
+        <ThemeProvider theme={theme}>
+          <UserProvider>
+            <AuthProvider>
+              <AuthStateChanged>
                 <Component {...pageProps} />
-              </Layout>
-            </AuthStateChanged>
-          </AuthProvider>
-        </UserProvider>
-      </ThemeProvider>
+              </AuthStateChanged>
+            </AuthProvider>
+          </UserProvider>
+        </ThemeProvider>
+      </CacheProvider>
     )
   }
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp)

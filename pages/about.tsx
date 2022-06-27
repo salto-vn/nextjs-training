@@ -1,8 +1,21 @@
+import { Button } from 'antd'
 import Head from "next/head"
+import styles from "styles/About.module.scss"
 import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { increment, decrement } from 'store/slices/counterSlice'
+import { withProtected } from 'src/auth/route'
 
-export default function About() {
+import type { ReactElement } from 'react'
+import Layout from 'component/Layout';
+import type { NextPageWithLayout } from 'pages/_app';
+
+
+
+export function About({ auth }: any) {
   const { t } = useTranslation()
+  const dispatch = useDispatch()
+  const counter = useSelector((state: any) => state.counter.count)
   return (
     <>
       <Head>
@@ -16,6 +29,14 @@ export default function About() {
       <div>
         { t('aboutContent') }
       </div>
+      <br />
+      <div className={styles.counterBox}>
+        <h1>Counter: <span className={styles.counter}>{counter}</span></h1>
+        <Button type="primary" className={styles.plusButton} onClick={() => dispatch(increment())}>PLUS Counter</Button>
+        <Button type="primary" danger onClick={() => dispatch(decrement())}>NEGATIVE Counter</Button>
+      </div>
     </>
   )
 }
+
+export default withProtected(About)

@@ -13,6 +13,7 @@ import { initReactI18next, useTranslation } from 'react-i18next'
 import { Select } from 'antd'
 import { viTrans } from 'assets/lang/vi'
 import { enTrans } from 'assets/lang/en'
+import { jpTrans } from 'assets/lang/ja'
 
 const { Option } = Select;
 
@@ -30,17 +31,17 @@ i18n
   .init({
     resources: {
       en: { translation: enTrans },
-      vi: { translation: viTrans }
+      vi: { translation: viTrans },
+      ja: { translation: jpTrans}
     },
     lng: "en",
     fallbackLng: "en",
     interpolation: { escapeValue: false }
   })
 
-export default function Navbar() {
+export default function Navbar({auth}: any) {
   const { t } = useTranslation()
   const [langI18, setLangI18] = useState(localStorage.getItem('lng') ?? "en")
-
   useEffect(() => {
     i18n.changeLanguage(langI18)
   }, [])
@@ -73,13 +74,15 @@ export default function Navbar() {
                 icon={faChevronCircleRight}
                 className={styles.icon}
               />
-              Feed
+              { t('menuFeed') }
             </a>
           </Link>
           <Select defaultValue={langI18} style={{ width: 120 }} onChange={handleChange}>
             <Option value="en">English</Option>
             <Option value="vi">Việt Nam</Option>
+            <Option value="ja">Japanese</Option>
           </Select>
+          {/* {user && (<button className="btn btn-primary w-100" onClick={logout}>{ t('logOut') }</button>)} */}
         </div>
         <div>
           <Link href="/nextjs">
