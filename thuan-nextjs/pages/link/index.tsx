@@ -1,9 +1,9 @@
 import styles from '../styles/Home.module.scss'
 
-export default function Home() {
+export default function link() {
   return (
    <div className='container'>
-    <h1>HOME</h1>
+    <h1>Link</h1>
    </div>
   )
 }
