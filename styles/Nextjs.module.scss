@@ -1,0 +1,35 @@
+.singleLink {
+  display: block;
+  width: 100%;
+  height: 200px;
+}
+
+.singleLink > span {
+  display: block !important;
+  width: 100% !important;
+  height: 200px !important;
+}
+
+.singleLink img {
+  width: 100%;
+  height: 100%;
+}
+
+.description {
+  display: block;
+  height: 60px;
+  overflow-y: scroll;
+}
+
+.h3carousel span {
+  display: block;
+  width: 100%;
+}
+
+.titleBranch {
+  font-weight: bold;
+}
+
+.cartButton {
+  margin-top: 10px;
+}
