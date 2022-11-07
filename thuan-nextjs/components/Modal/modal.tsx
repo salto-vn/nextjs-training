@@ -1,10 +1,21 @@
-import { useEffect, useCallback } from "react"
+import  {useRef , useEffect, useCallback, useState } from "react"
 import { useRouter } from "next/router"
 
 export default function Modal(){
+    
     const router = useRouter()
+    const initialRef: any = null;
+    const  modalRef = useRef(initialRef)
     const handleLogIn =  useCallback((e:any)=>{
         e.preventDefault()
+        const modal = modalRef.current;
+        modal!.className = "modal fade"
+        modal!.style = "display: none"
+        const modalBackDrop = document.getElementsByClassName("modal-backdrop fade show") as HTMLCollectionOf<HTMLElement>
+        for (let i = 0; i < modalBackDrop.length; i++) {
+            modalBackDrop[i].style.opacity = "0";
+          }
+        
         const data = {
             email: e.target.email.value,
             password: e.target.password.value,
@@ -19,10 +30,10 @@ export default function Modal(){
             .then((response) => {
                 if(response.ok){
 
-                    // save in client browser, cannot disappear when close the browser
-                    window.localStorage.setItem("user", JSON.stringify(response))
-                    // save in client browser but disappear when close the browser
-                    window.sessionStorage.setItem("user", JSON.stringify(response))
+                    // // save in client browser, cannot disappear when close the browser
+                    // window.localStorage.setItem("user", JSON.stringify(response))
+                    // // save in client browser but disappear when close the browser
+                    // window.sessionStorage.setItem("user", JSON.stringify(response))
 
                     router.push("/")
                 }
@@ -37,6 +48,7 @@ export default function Modal(){
         <>
         <div
         className="modal fade"
+        ref={modalRef}
         id="exampleModal"
         // tabIndex="-1"
         aria-labelledby="exampleModalLabel"
