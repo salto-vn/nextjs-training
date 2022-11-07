@@ -27,6 +27,16 @@ export default function navbar(){
                         <li className="nav-item">
                         <Link className="nav-link" href="/articles">articles</Link>
                         </li>
+                        <li className="nav-item">
+                        <a
+                            className="nav-link"
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                        >
+                            LogIn/SignUp
+                        </a>
+                        </li>
                         <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Dropdown

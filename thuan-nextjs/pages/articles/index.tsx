@@ -7,7 +7,7 @@ import React from "react"
 const myfont = localFont({src: '../../public/font/NotoSerifJP-Regular.otf'})
 const inter = Inter({subsets: ['vietnamese'] });
 
-function Articles({response}) {
+function Articles({response: Response} : any) {
   // const myLoader = ({src, width, quality}) => {
   //   return `https://example.com/${src}?w=${width}&q=${quality || 75}`
   // }
@@ -16,15 +16,15 @@ function Articles({response}) {
     return (
      <div className='container'>
       <h1>Article Page</h1>
-      <h3>userId: {response.userId}</h3>
-      <h3>Id: {response.id}</h3>
-      <h3>Title: {response.title}</h3>
-      <p>{response.body}</p>
+      <h3>userId: {Response.userId}</h3>
+      <h3>Id: {Response.id}</h3>
+      <h3>Title: {Response.title}</h3>
+      <p>{Response.body}</p>
       <Image 
       // loader={myLoader}
       src={GaiXinh}
       alt="Picture of the author"
-      width={800}
+      width={400}
       height={500}
       quality={100}
       priority

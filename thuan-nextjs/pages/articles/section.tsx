@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 export default function Section(){
     const router = useRouter()
-    const handlesubmit = useCallback((e)=> {
+    const handlesubmit = useCallback((e:any)=> {
         e.preventDefault()
      fetch('https://l11ee.mocklab.io/json',{
         method:'POST',
