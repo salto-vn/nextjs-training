@@ -2,14 +2,20 @@ import Link from "next/link"
 import {useState, useEffect} from "react"
 
 export default function navbar(){
-    type Status = {
-        token: String,
-        username: String
+    type Status =  {
+        token: string ,
+        username: string
     }
     const [isLogin, setIsLogin] = useState<Status | null>(null)
     useEffect(()=>{
-        const  isLogin : Status = JSON.parse(window.localStorage.getItem("user"))
-        console.log(isLogin)
+        const getUserFromLocalStorage = () => {
+            try {
+                return JSON.parse(localStorage.getItem('user') || '');
+            } catch (error) {
+                return null;
+            }
+        };
+        const isLogin : Status = getUserFromLocalStorage()
         setIsLogin(isLogin)
         if(isLogin?.token != null){
             console.log("user login")

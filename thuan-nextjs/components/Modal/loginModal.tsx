@@ -3,18 +3,19 @@ import { useRouter } from "next/router"
 
 
 export default function loginModal(){
-    type UserData = {
-        username: string
-        password: string
-        phone: number
-        email: string
-        token: string
-         
-      }[]
     const [user, setUser] = useState<UserData | null>(null);
     const router = useRouter()
     const initialRef: any = null;
     const  modalRef = useRef(initialRef)
+
+    type UserData = {
+        id: string
+        username: string
+        password: string
+        phone: number
+        email: string
+        token: string 
+      }[]
 
     const style = {
         "text-decoration" : "underline",
@@ -28,13 +29,14 @@ export default function loginModal(){
         modal!.style = "display: none"
         const modalBackDrop = document.getElementsByClassName("modal-backdrop fade show") as HTMLCollectionOf<HTMLElement>
         for (let i = 0; i < modalBackDrop.length; i++) {
-            modalBackDrop[i].style.opacity = "0";
+            modalBackDrop[i].style.display = "none";
           }
         
         const data = {
             email: e.target.email.value,
             password: e.target.password.value,
         }
+
         const request = await fetch("https://l11ee.mocklab.io/login",{
                 method: "POST",
                 headers: {"Content-type":"application/json",
@@ -44,7 +46,8 @@ export default function loginModal(){
         const user: UserData = await request.json()
         window.localStorage.setItem("user", JSON.stringify(user))
         setUser(user)
-        router.push("/")
+        router.push(`/profile/${user.id}`)
+
         return {props: { user }}
 
     }  
