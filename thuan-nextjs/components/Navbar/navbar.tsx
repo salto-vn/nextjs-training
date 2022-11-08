@@ -32,7 +32,7 @@ export default function navbar(){
                             className="nav-link"
                             type="button"
                             data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
+                            data-bs-target="#loginModal"
                             
                         >
                             LogIn/SignUp
