@@ -1,5 +1,6 @@
 import  {useRef , useEffect, useCallback, useState } from "react"
 import { useRouter } from "next/router"
+import { type } from "os";
 
 
 export default function loginModal(){
@@ -8,7 +9,7 @@ export default function loginModal(){
     const initialRef: any = null;
     const  modalRef = useRef(initialRef)
 
-    type UserData = {
+    interface UserData {
         id: string
         username: string
         password: string
@@ -19,7 +20,7 @@ export default function loginModal(){
 
     const style = {
         "text-decoration" : "underline",
-        "display":"flex"
+        "display" : "flex"
     }
 
     const handleLogIn =  async(e:any)=>{

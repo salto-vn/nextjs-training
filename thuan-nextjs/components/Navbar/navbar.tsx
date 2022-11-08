@@ -57,7 +57,7 @@ export default function navbar(){
                             data-bs-target="#loginModal"
                             
                         >
-                            LogIn/SignUp
+                            {isLogin?.username || "LogIn/SignUp"}
                         </a>
                         
                         </li>
