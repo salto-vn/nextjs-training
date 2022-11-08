@@ -1,7 +1,23 @@
 import Link from "next/link"
-
+import {useState, useEffect} from "react"
 
 export default function navbar(){
+    type Status = {
+        token: String,
+        username: String
+    }
+    const [isLogin, setIsLogin] = useState<Status | null>(null)
+    useEffect(()=>{
+        const  isLogin : Status = JSON.parse(window.localStorage.getItem("user"))
+        console.log(isLogin)
+        setIsLogin(isLogin)
+        if(isLogin?.token != null){
+            console.log("user login")
+    }   else {
+        console.log("user not login")
+    }
+    },[])
+    
     return ( 
         <>
             <nav className="navbar navbar-expand-lg bg-light">

@@ -44,7 +44,7 @@ export default function loginModal(){
         const user: UserData = await request.json()
         window.localStorage.setItem("user", JSON.stringify(user))
         setUser(user)
-        console.log(user)
+        router.push("/")
         return {props: { user }}
 
     }  
