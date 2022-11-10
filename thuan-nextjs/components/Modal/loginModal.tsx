@@ -1,6 +1,7 @@
 import  {useRef , useEffect, useCallback, useState } from "react"
 import { useRouter } from "next/router"
-import { type } from "os";
+
+
 
 
 export default function loginModal(){

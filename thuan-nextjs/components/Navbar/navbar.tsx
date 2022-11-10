@@ -1,27 +1,42 @@
 import Link from "next/link"
 import {useState, useEffect} from "react"
+import Firebase from '../../lib/firebase';
+import type { User } from "../../type/user";
 
 export default function navbar(){
+    const [authUser, setAuthUser] = useState<User | null>(null)
+    const [loading, setLoading] = useState<boolean>(true)
     type Status =  {
         token: string ,
         username: string
     }
     const [isLogin, setIsLogin] = useState<Status | null>(null)
+    const formatterUser = (user:User) => ({
+        email:  "khuuquocthuan@gmail.com",
+        password:  "123456"
+    })
+    const authStateChanged = async (authState:User) => {
+        if (!authState) {
+          setAuthUser(null)
+          setLoading(false)
+        }
+            setLoading(true)
+            var userFormatted : any = formatterUser(authState)
+            setAuthUser(userFormatted )
+            setLoading(false)
+    }
+    
     useEffect(()=>{
-        const getUserFromLocalStorage = () => {
-            try {
-                return JSON.parse(localStorage.getItem('user') || '');
-            } catch (error) {
-                return null;
-            }
-        };
-        const isLogin : Status = getUserFromLocalStorage()
+        const unsubscribe = Firebase.auth().onAuthStateChanged(authStateChanged);
+        const isLogin : Status = JSON.parse(localStorage.getItem('user') || '')
         setIsLogin(isLogin)
         if(isLogin?.token != null){
             console.log("user login")
-    }   else {
+        }   
+        else {
         console.log("user not login")
-    }
+        }
+        return () => unsubscribe()
     },[])
     
     return ( 
