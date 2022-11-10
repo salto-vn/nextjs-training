@@ -1,8 +1,6 @@
 import  {useRef , useEffect, useCallback, useState } from "react"
 import { useRouter } from "next/router"
-
-
-
+import { signInWithGoogle } from "../../lib/firebase";
 
 export default function loginModal(){
     const [user, setUser] = useState<UserData | null>(null);
@@ -101,6 +99,10 @@ export default function loginModal(){
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
+            <button className="btn btn-primary" onClick={signInWithGoogle}>
+            <img src="https://img.icons8.com/ios-filled/50/000000/google-logo.png" alt="google icon"/>
+            <span> Continue with Google</span>
+            </button>
             </div>
           </div>
         </div>
