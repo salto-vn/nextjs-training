@@ -1,15 +1,12 @@
 declare namespace NodeJS {
     export interface ProcessEnv {
-      readonly ENV_VARIABLE: string
-      readonly NEXT_PUBLIC_ENV_VARIABLE: string
-  
-      readonly DEVELOPMENT_ENV_VARIABLE: string
-      readonly NEXT_PUBLIC_DEVELOPMENT_ENV_VARIABLE: string
-  
-      readonly ENV_LOCAL_VARIABLE: string
-      readonly NEXT_PUBLIC_ENV_LOCAL_VARIABLE: string
-  
-      readonly PRODUCTION_ENV_VARIABLE: string
-      readonly NEXT_PUBLIC_PRODUCTION_ENV_VARIABLE: string
+      readonly NEXTJS_API_KEY : string,
+      readonly NEXTJS_APP_AUTH_DOMAIN:string,
+      readonly NEXTJS_APP_DATABASE_URL: string
+      readonly NEXTJS_APP_PROJECT_ID: string
+      readonly  NEXTJS_APP_STORAGE_BUCKET: string
+      readonly NEXTJS_APP_MESSAGING_SENDER_ID:string
+      readonly  NEXTJS_APP_ID: string
+      readonly  NEXTJS_APP_MEASUREMENT_ID: string
     }
   }

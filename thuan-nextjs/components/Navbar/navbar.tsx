@@ -1,19 +1,23 @@
 import Link from "next/link"
 import {useState, useEffect} from "react"
 import Firebase from '../../lib/firebase';
-import type { User } from "../../type/user";
+import { i18n } from "../../utils/i18n";
+import { useDispatch, useSelector } from 'react-redux';
+import { userSelector } from "../../features/userSlice";
+import { Status } from "../../type/type";
+import { selectAuthState } from "../../features/authSlice";
 
 export default function navbar(){
-    const [loading, setLoading] = useState<boolean>(true)
-    type Status =  {
-        token: string ,
-        username: string
-    }
     const [isLogin, setIsLogin] = useState<Status | null>(null)
-    
+    const [isLogged, setIsLogged] = useState<boolean>(false)
+    const [loading, setLoading] = useState<boolean>(false)
+    const detectUser = useSelector(userSelector)
+    const auth = useSelector(selectAuthState)
+    const dispatch = useDispatch()
     useEffect(()=>{
         const isLogin : Status = JSON.parse(localStorage.getItem('user') || '')
         setIsLogin(isLogin)
+        setLoading(true)
         if(isLogin?.token != null){
             console.log("user login")
         }   
@@ -26,7 +30,7 @@ export default function navbar(){
         <>
             <nav className="navbar navbar-expand-lg bg-light">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#">Navbar</a>
+                    <a className="navbar-brand" href="#">{i18n.title.status}</a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                     </button>
