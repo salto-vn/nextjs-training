@@ -4,9 +4,11 @@ import styles from '../styles/Home.module.css'
 import Nav from '../components/Layout'
 import Link from 'next/link'
 
-export default function Home() {
+export default function Home({res}:any) {
   return (
+
     <div className={`${styles.container} ${styles.test}`}>
+      <p>{res.message}</p>
       <Nav/>
       <Link href="/blog">Next</Link>
       <Head>
@@ -72,4 +74,27 @@ export default function Home() {
       </footer>
     </div>
   )
+}
+
+export async function getServerSideProps() {
+  const user = process.env.ENV_VARIABLE
+   const req = await fetch('https://l11ee.mocklab.io/json',{
+        method:'POST',
+        headers: {"Content-Type": "application/json",
+            'Authorization': `Bearer 914c22330559de02c1e2ba2317a09e0f`
+        },
+        body: JSON.stringify({
+            "id": 12345,
+            "value": process.env.VALUE
+        })
+       } )
+  const res = await req.json()
+
+  console.log(res)
+    
+  return {
+    props: {
+      res
+    }
+  }
 }
