@@ -23,6 +23,9 @@ export default function LayoutComponent(){
                 <li>
                     <Link href="/post/second">Second Post</Link>
                 </li>
+                <li>
+                    <Link href="/post/demo">Demo</Link>
+                </li>
             </ul>
         </header>
         </>
