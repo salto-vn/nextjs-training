@@ -26,6 +26,9 @@ export default function LayoutComponent(){
                 <li>
                     <Link href="/post/demo">Demo</Link>
                 </li>
+                <li>
+                    <Link href="/font">Font</Link>
+                </li>
             </ul>
         </header>
         </>
