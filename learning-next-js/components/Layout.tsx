@@ -29,6 +29,9 @@ export default function LayoutComponent(){
                 <li>
                     <Link href="/font">Font</Link>
                 </li>
+                <li>
+                    <Link href="/image">Image</Link>
+                </li>
             </ul>
         </header>
         </>
