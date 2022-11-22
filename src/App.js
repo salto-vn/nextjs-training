@@ -2,8 +2,17 @@ import { render } from '@testing-library/react'
 import { useState } from 'react'
 import AvatarFunction from './AvatarFunction'
 import ContentUseEffect from './ContentUseEffect'
+import CountDownUseRef from './CountDownUseRef'
 import FakeChatAppFunction from './FakeChatAppFunction'
 import TimeFunction from './TimeFunction'
+import FunctionMemoHOC from './FunctionMemoHOC'
+import UseCallBackHook from './UseCallBackHook'
+import UseMemo from './UseMemo'
+import UseReducer from './UseReducer'
+import UseReducerTodoList from './UseReducerTodoList'
+import UseContext from './UseContext'
+import { ThemeProvider } from './ThemeContext'
+import "./App.css"
 
 
 const gifts = [
@@ -314,6 +323,100 @@ function ToggleFakeChatAppFunction() {
   )
 }
 
+function ToggleCountDownUseRef() {
+  const [show, setShow] = useState(false)
+
+  return (
+    <div>
+      <button
+        style={show ? { color: '#fff', backgroundColor: '#333' } : {}}
+        onClick={() => setShow(!show)}>Count Down Use Ref Function</button>
+      {show && <CountDownUseRef />}
+    </div>
+  )
+}
+
+function ToggleMemoHOC() {
+  const [show, setShow] = useState(false)
+
+  return (
+    <div>
+      <button
+        style={show ? { color: '#fff', backgroundColor: '#333' } : {}}
+        onClick={() => setShow(!show)}>Memo Hoc Function</button>
+      {show && <FunctionMemoHOC />}
+    </div>
+  )
+}
+
+//Giúp tránh tạo ra những hàm mới một cách không cần thiết trong function component
+function ToggleUseCallBackHook() {
+  const [show, setShow] = useState(false)
+
+  return (
+    <div>
+      <button
+        style={show ? { color: '#fff', backgroundColor: '#333' } : {}}
+        onClick={() => setShow(!show)}>Use Call Back Function</button>
+      {show && <UseCallBackHook />}
+    </div>
+  )
+}
+
+function ToggleUseMemo() {
+  const [show, setShow] = useState(false)
+
+  return (
+    <div>
+      <button
+        style={show ? { color: '#fff', backgroundColor: '#333' } : {}}
+        onClick={() => setShow(!show)}>Use Memo Function</button>
+      {show && <UseMemo />}
+    </div>
+  )
+}
+
+function ToggleUseReducer() {
+  const [show, setShow] = useState(false)
+
+  return (
+    <div>
+      <button
+        style={show ? { color: '#fff', backgroundColor: '#333' } : {}}
+        onClick={() => setShow(!show)}>Use Reducer Function</button>
+      {show && <UseReducer />}
+    </div>
+  )
+}
+
+function ToggleUseReducerTodoList() {
+  const [show, setShow] = useState(false)
+
+  return (
+    <div>
+      <button
+        style={show ? { color: '#fff', backgroundColor: '#333' } : {}}
+        onClick={() => setShow(!show)}>Use Reducer Todo list Function</button>
+      {show && <UseReducerTodoList />}
+    </div>
+  )
+}
+
+function ToggleUseContext() {
+  const [show, setShow] = useState(false)
+
+  return (
+    <div>
+      <button
+        style={show ? { color: '#fff', backgroundColor: '#333' } : {}}
+        onClick={() => setShow(!show)}>Use Context Function</button>
+      {show && <UseContext />}
+    </div>
+  )
+}
+
+
+
 function App() {
   return (
     <div className="App" style={{ padding: 30 }}>
@@ -322,10 +425,31 @@ function App() {
       <ToggleInputRadio />
       <ToggleInputCheckBox />
       <ToggleTodoList />
+      {/* Cập nhật lại state
+        - Cập nhật DOM (mutated)
+        - Gọi cleanup nếu dependency thay đổi (sync)
+        - Gọi useEffect callback (sync)
+        - Render lại UI */}
       <ToggleUseEffect />
       <ToggleTimeFunction />
       <ToggleAvatarFunction />
       <ToggleFakeChatAppFunction />
+      {/* Lưu các giá trị qua một tham chiếu bên ngoài function component */}
+      <ToggleCountDownUseRef />
+      {/* Hook order component (HOC) */}
+      <ToggleMemoHOC />
+      {/* Giúp tránh tạo ra những hàm mới một cách không cần thiết trong function component */}
+      <ToggleUseCallBackHook />
+      {/* Giúp tránh thực hiện lại một logic nào đó không cần thiết */}
+      <ToggleUseMemo />
+      {/* Cung cấp cho người dùng có thêm một sự lựa chọn để sử dụng state cho function component */}
+      <ToggleUseReducer />
+      <ToggleUseReducerTodoList />
+      {/* Đơn giản hóa việc truyền dữ liệu từ component cha xuống component con mà không cần sử dụng tới props */}
+      <ThemeProvider>
+        <ToggleUseContext />
+      </ThemeProvider>
+      
     </div>
   );
 }
