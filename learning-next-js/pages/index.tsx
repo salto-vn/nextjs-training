@@ -4,9 +4,11 @@ import styles from '../styles/Home.module.css'
 import Nav from '../components/Layout'
 import Link from 'next/link'
 
-export default function Home() {
+export default function Home({res}:any) {
   return (
+
     <div className={`${styles.container} ${styles.test}`}>
+      <p>{res.message}</p>
       <Nav/>
       <Link href="/blog">Next</Link>
       <Head>
@@ -73,3 +75,49 @@ export default function Home() {
     </div>
   )
 }
+
+export async function getServerSideProps() {
+  const user = process.env.ENV_VARIABLE
+   const req = await fetch('https://l11ee.mocklab.io/json',{
+        method:'POST',
+        headers: {"Content-Type": "application/json",
+            'Authorization': `Bearer 914c22330559de02c1e2ba2317a09e0f`
+        },
+        body: JSON.stringify({
+            "id": 12345,
+            "value": process.env.VALUE
+        })
+       } )
+  const res = await req.json()
+
+  console.log(res)
+    
+  return {
+    props: {
+      res
+    }
+  }
+}
+
+// export default function Custom404() {
+//   return <h1>404 - Page Not Found</h1>
+// }
+
+// function Error({ statusCode }) {
+//   return (
+//     <p>
+//       <h1>{statusCode}</h1>
+//       {statusCode
+//         ? `An error ${statusCode} occurred on server`
+//         : 'An error occurred on client'}
+//     </p>
+//   )
+// }
+
+// Error.getInitialProps = ({ res, err }) => {
+//   console.log(11)
+//   const statusCode = res ? res.statusCode : err ? err.statusCode : 404
+//   return { statusCode }
+// }
+
+// export default Error
