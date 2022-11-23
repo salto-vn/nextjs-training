@@ -1,26 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
-import Demo from 'components/Demo';
-import Welcome from 'components/DucAnh/Welcome'
-import Comment from 'components/DucAnh/Comments';
-import Clock from 'components/DucAnh/Clock'
-import { useState } from 'react';
+import logo from "./logo.svg";
+import "./App.css";
+import Demo from "components/Demo";
+import Welcome from "components/DucAnh/Welcome";
+import Comment from "components/DucAnh/Comments";
+import Clock from "components/DucAnh/Clock";
+import { useState, useEffect } from "react";
 
 const comment = {
   date: new Date(),
-  text: 'I like ReactJS',
+  text: "I like ReactJS",
   author: {
-    name: 'Hello Kitty',
-    avatarUrl: 'http://placekitten.com/g/64/64'
-  }
-}
+    name: "Hello Kitty",
+    avatarUrl: "http://placekitten.com/g/64/64",
+  },
+};
 
 function App() {
+  useEffect(() => {
+    // Update the document title using the browser API
+    document.title = `${count}`;
+  });
+
   const [date, setDate] = useState(new Date());
 
   setInterval(() => {
-    setDate(new Date())
+    setDate(new Date());
   }, 1000);
+
+  const [count, setCount] = useState(1);
 
   return (
     <div className="App">
@@ -28,17 +35,26 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <Demo />
 
-        <div className='duc-anh-page'>
-          {/* // Gọi 1 components nhiều lần */}
+        <div className="duc-anh-page">
           <Welcome name="Sara" />
           <Welcome name="Steven" />
           <Welcome name="Join" />
-
-          {/* // Chia các components thành các components nhỏ  */}
-          <Comment date={comment.date} text={comment.text} author={comment.author} />
-
-          {/* // Bộ đếm thời gian */}
+          <Comment
+            date={comment.date}
+            text={comment.text}
+            author={comment.author}
+          />
           <Clock date={date} />
+          Count: {count}
+          <br></br>
+          <button onClick={() => setCount(1)}>Reset</button>
+          <button onClick={() => setCount((prevCount) => prevCount - 1)}>
+            -
+          </button>
+          <button onClick={() => setCount((prevCount) => prevCount + 1)}>
+            +
+          </button>
+          <h1 id="Number">{count}</h1>
         </div>
       </header>
     </div>
