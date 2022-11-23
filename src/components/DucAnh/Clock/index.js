@@ -11,8 +11,6 @@ export default function Clock(props) {
   );
 }
 
-// setInterval(Clock(new Date()), 1000)
-
 // export default class Clock extends React.Component {
 //     render() {
 //         return (
