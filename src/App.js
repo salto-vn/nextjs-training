@@ -17,9 +17,8 @@ const comment = {
 
 function App() {
   useEffect(() => {
-    // Update the document title using the browser API
-    document.title = `${count}`;
-  });
+    document.title = "Edit post";
+  }, []);
 
   const [date, setDate] = useState(new Date());
 
