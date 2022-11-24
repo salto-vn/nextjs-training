@@ -18,7 +18,6 @@ export default function UseEffect() {
   const handleAdd = (id) => {
     setLanguages([...languages, { id: id, name: language, checked: false }]);
     setlanguage("");
-    console.log("handle add");
   };
 
   const handleDelete = (id) => {
@@ -37,7 +36,6 @@ export default function UseEffect() {
   };
 
   useEffect(() => {
-    console.log("Mount Case 2 ...");
     document.title = title;
   }, [title]);
 
