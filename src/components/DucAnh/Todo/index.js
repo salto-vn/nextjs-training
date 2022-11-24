@@ -4,8 +4,10 @@ import { v4 as uuidv4 } from "uuid";
 
 export default function Todo() {
   const array = [
-    { id: uuidv4(), value: "ReactJS" },
-    { id: uuidv4(), value: "VueJS" },
+    { id: uuidv4(), value: "ReactJS", isChecked: false },
+    { id: uuidv4(), value: "VueJS", isChecked: true },
+    { id: uuidv4(), value: "NextJS", isChecked: true },
+    { id: uuidv4(), value: "NodeJS", isChecked: false },
   ];
 
   const [libraries, setLibraries] = useState(array);
@@ -13,7 +15,7 @@ export default function Todo() {
 
   function updateArray() {
     if (text !== "") {
-      const newItem = { id: uuidv4(), value: text };
+      const newItem = { id: uuidv4(), value: text, isChecked: false };
       setLibraries((prevState) => [...prevState, newItem]);
       setText("");
     }
@@ -22,6 +24,12 @@ export default function Todo() {
   function setValueText(e) {
     setText(e.target.value);
   }
+
+  function handleDeleteItem(id) {
+    setLibraries((prevState) => prevState.filter((item) => item.id !== id));
+  }
+
+  function handleCheckbox(id) {}
 
   return (
     <div>
@@ -36,7 +44,15 @@ export default function Todo() {
       <br></br>
       {libraries &&
         libraries.map((item) => {
-          return <Row name={item.value} key={item.id} />;
+          return (
+            <Row
+              name={item.value}
+              key={item.id}
+              isChecked={item.isChecked}
+              handleDeleteItem={() => handleDeleteItem(item.id)}
+              handleCheckbox={() => handleCheckbox(item.id)}
+            />
+          );
         })}
     </div>
   );

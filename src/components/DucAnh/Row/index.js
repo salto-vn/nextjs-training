@@ -4,10 +4,8 @@ import Edit from "../Edit";
 import Save from "../Save";
 
 export default function Row(props) {
-  const { name } = props;
-
+  const { name, isChecked, handleDeleteItem, handleCheckbox } = props;
   const [mode, setMode] = useState(0);
-
   const [libName, setLibName] = useState(name);
 
   function handleChangeModeSave() {
@@ -26,7 +24,12 @@ export default function Row(props) {
 
   return (
     <div>
-      <input type="checkbox" />
+      <input
+        type="checkbox"
+        defaultChecked={isChecked}
+        value={isChecked}
+        onChange={handleCheckbox}
+      />
       {mode === 0 ? (
         <label>{libName}</label>
       ) : (
@@ -38,7 +41,7 @@ export default function Row(props) {
         <Save handleChange={handleChangeModeEdit} />
       )}
 
-      <Delete />
+      <Delete handleDelete={handleDeleteItem} />
       <br></br>
     </div>
   );
