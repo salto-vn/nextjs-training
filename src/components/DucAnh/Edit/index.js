@@ -1,3 +1,4 @@
-export default function Edit() {
-  return <button>Edit</button>;
+export default function Edit(props) {
+  const { handleChange } = props;
+  return <button onClick={handleChange}>Edit</button>;
 }

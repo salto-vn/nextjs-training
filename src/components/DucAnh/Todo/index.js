@@ -12,8 +12,11 @@ export default function Todo() {
   const [text, setText] = useState("");
 
   function updateArray() {
-    const newItem = { id: uuidv4(), value: text };
-    setLibraries((prevState) => [...prevState, newItem]);
+    if (text !== "") {
+      const newItem = { id: uuidv4(), value: text };
+      setLibraries((prevState) => [...prevState, newItem]);
+      setText("");
+    }
   }
 
   function setValueText(e) {
