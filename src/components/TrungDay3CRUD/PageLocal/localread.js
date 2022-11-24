@@ -52,6 +52,7 @@ export default function ReadLocal() {
     setLocalData(() => {
       return localData.filter((item) => item.id !== id);
     });
+    clearInputForm();
   };
 
   const handleSubmit = () => {
@@ -81,6 +82,10 @@ export default function ReadLocal() {
         },
       ]);
     }
+    clearInputForm();
+  };
+
+  const clearInputForm = () => {
     setId("");
     setFirstName("");
     setLastName("");
