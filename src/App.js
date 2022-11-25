@@ -3,9 +3,10 @@ import logo from "./logo.svg";
 import "./App.css";
 import Demo from "components/Demo";
 import Todo from "components/DucAnh/Todo";
-import Home from "./pages/Home";
-import News from "./pages/News";
-import Contact from "./pages/Contact";
+import Home from "./pages/DucAnh/Home";
+import News from "./pages/DucAnh/News";
+import Contact from "./pages/DucAnh/Contact";
+import Heading from "components/DucAnh/Heading";
 
 function App() {
   return (
@@ -35,6 +36,8 @@ function App() {
             <Route path="/news" element={<News />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
+
+          <Heading />
         </div>
       </header>
     </div>
