@@ -1,4 +1,4 @@
-import Row from "../Row";
+import Row from "components/DucAnh/Row";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
@@ -43,7 +43,7 @@ export default function Todo() {
   }
 
   return (
-    <div>
+    <div className="to-do-list">
       <input
         type="text"
         id="add-task"
@@ -53,18 +53,17 @@ export default function Todo() {
       />
       <button onClick={updateArray}>Add</button>
       <br></br>
-      {libraries &&
-        libraries.map((item) => {
-          return (
-            <Row
-              name={item.value}
-              key={item.id}
-              isChecked={item.isChecked}
-              handleDeleteItem={() => handleDeleteItem(item.id)}
-              handleCheckbox={() => handleCheckbox(item.id)}
-            />
-          );
-        })}
+      {libraries.map((item) => {
+        return (
+          <Row
+            name={item.value}
+            key={item.id}
+            isChecked={item.isChecked}
+            handleDeleteItem={() => handleDeleteItem(item.id)}
+            handleCheckbox={() => handleCheckbox(item.id)}
+          />
+        );
+      })}
     </div>
   );
 }

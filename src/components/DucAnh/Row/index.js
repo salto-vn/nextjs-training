@@ -1,20 +1,20 @@
 import { useState } from "react";
-import Delete from "../Delete";
-import Edit from "../Edit";
-import Save from "../Save";
+import Delete from "components/DucAnh/Delete";
+import Edit from "components/DucAnh/Edit";
+import Save from "components/DucAnh/Save";
 
 export default function Row(props) {
   const { name, isChecked, handleDeleteItem, handleCheckbox } = props;
-  const [mode, setMode] = useState(0);
+  const [mode, setMode] = useState(false);
   const [libName, setLibName] = useState(name);
 
   function handleChangeModeSave() {
-    setMode(1);
+    setMode(true);
   }
 
   function handleChangeModeEdit() {
     if (libName !== "") {
-      setMode(0);
+      setMode(false);
     }
   }
 
@@ -23,19 +23,19 @@ export default function Row(props) {
   }
 
   return (
-    <div>
+    <div className="library-row">
       <input
         type="checkbox"
         defaultChecked={isChecked}
         value={isChecked}
         onChange={handleCheckbox}
       />
-      {mode === 0 ? (
+      {mode === false ? (
         <label>{libName}</label>
       ) : (
         <input type="text" value={libName} onChange={(e) => updateValue(e)} />
       )}
-      {mode === 0 ? (
+      {mode === false ? (
         <Edit handleChange={handleChangeModeSave} />
       ) : (
         <Save handleChange={handleChangeModeEdit} />
