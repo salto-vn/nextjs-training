@@ -29,7 +29,18 @@ export default function Todo() {
     setLibraries((prevState) => prevState.filter((item) => item.id !== id));
   }
 
-  function handleCheckbox(id) {}
+  function handleCheckbox(id) {
+    setLibraries(
+      libraries.map((item) => {
+        if (item.id === id) {
+          const a = !item.isChecked;
+          return { ...item, isChecked: a };
+        } else {
+          return item;
+        }
+      })
+    );
+  }
 
   return (
     <div>
