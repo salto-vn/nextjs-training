@@ -2,16 +2,15 @@ import { useEffect, useState } from "react";
 import { Table, Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-export default function Read() {
+export default function Index() {
+  const navigate = useNavigate();
   const [APIData, setAPIData] = useState([]);
 
   const setData = (data) => {
-    let { id, firstName, lastName, checkbox } = data;
-    localStorage.setItem("ID", id);
-    localStorage.setItem("FirstName", firstName);
-    localStorage.setItem("LastName", lastName);
-    localStorage.setItem("CheckboxValue", checkbox);
+    localStorage.setItem("employee", JSON.stringify(data));
+    navigate("/update");
   };
 
   useEffect(() => {
@@ -62,11 +61,9 @@ export default function Read() {
                 <Table.Cell>
                   {data.checkbox ? "Checked" : "Unchecked"}
                 </Table.Cell>
-                <Link to="/update">
-                  <Table.Cell>
-                    <Button onClick={() => setData(data)}>Update</Button>
-                  </Table.Cell>
-                </Link>
+                <Table.Cell>
+                  <Button onClick={() => setData(data)}>Update</Button>
+                </Table.Cell>
                 <Table.Cell>
                   <Button onClick={() => onDelete(data.id)}>Delete</Button>
                 </Table.Cell>

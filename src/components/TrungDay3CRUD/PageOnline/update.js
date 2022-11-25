@@ -6,29 +6,25 @@ import axios from "axios";
 
 export default function Update() {
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [checkbox, setCheckbox] = useState(false);
-  const [id, setID] = useState(null);
+  const [objEmployee, setObjEmployee] = useState({
+    firstName: "",
+    lastName: "",
+    checkbox: false,
+    id: null,
+  });
 
   useEffect(() => {
-    setID(localStorage.getItem("ID"));
-    setFirstName(localStorage.getItem("FirstName"));
-    setLastName(localStorage.getItem("LastName"));
-    setCheckbox(localStorage.getItem("CheckboxValue") === "true");
+    const employee = JSON.parse(localStorage.getItem("employee"));
+    setObjEmployee(employee);
   }, []);
 
   const updateAPIData = () => {
     axios
       .put(
-        `https://637ee225cfdbfd9a63b9007d.mockapi.io/api/employee/employee/${id}`,
-        {
-          firstName,
-          lastName,
-          checkbox,
-        }
+        `https://637ee225cfdbfd9a63b9007d.mockapi.io/api/employee/employee/${objEmployee.id}`,
+        objEmployee
       )
-      .then(() => navigate("/read"));
+      .then(() => navigate("/index"));
   };
 
   return (
@@ -37,27 +33,42 @@ export default function Update() {
         <Form.Field>
           <label>First Name</label>
           <input
-            value={firstName}
+            value={objEmployee.firstName}
             placeholder="First Name"
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={(e) =>
+              setObjEmployee({
+                ...objEmployee,
+                firstName: e.target.value,
+              })
+            }
           />
         </Form.Field>
         <Form.Field>
           <label>Last Name</label>
           <input
-            value={lastName}
+            value={objEmployee.lastName}
             placeholder="Last Name"
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={(e) =>
+              setObjEmployee({
+                ...objEmployee,
+                lastName: e.target.value,
+              })
+            }
           />
         </Form.Field>
         <Form.Field>
           <Checkbox
             label="I agree to the Terms and Conditions"
-            checked={checkbox}
-            onChange={(e) => setCheckbox(!checkbox)}
+            checked={objEmployee.checkbox}
+            onChange={() =>
+              setObjEmployee({
+                ...objEmployee,
+                checkbox: !objEmployee.checkbox,
+              })
+            }
           />
         </Form.Field>
-        <Button onClick={() => navigate("/read")} type="button">
+        <Button onClick={() => navigate("/index")} type="button">
           Back
         </Button>
         <Button type="submit" onClick={updateAPIData}>

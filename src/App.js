@@ -3,8 +3,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Create from "components/TrungDay3CRUD/PageOnline/create";
 import Update from "components/TrungDay3CRUD/PageOnline/update";
-import Read from "components/TrungDay3CRUD/PageOnline/read";
-import ReadLocal from "components/TrungDay3CRUD/PageLocal/localread";
+import Index from "components/TrungDay3CRUD/PageOnline";
+import IndexLocal from "components/TrungDay3CRUD/PageLocal/IndexLocal";
+import "semantic-ui-css/semantic.min.css";
 
 function App() {
   return (
@@ -13,16 +14,16 @@ function App() {
         <h2 className="main-header">React Crud Operations</h2>
         <ul>
           <li>
-            <Link to="/read-local">Local CRUD</Link>
+            <Link to="/index-local">Local CRUD</Link>
           </li>
           <li>
-            <Link to="/read">Online CRUD</Link>
+            <Link to="/index">Online CRUD</Link>
           </li>
         </ul>
         <Routes>
           <Route path="/create" element={<Create />} />
-          <Route path="/read" element={<Read />} />
-          <Route path="/read-local" element={<ReadLocal />} />
+          <Route path="/index" element={<Index />} />
+          <Route path="/index-local" element={<IndexLocal />} />
           <Route path="/update" element={<Update />} />
         </Routes>
       </div>

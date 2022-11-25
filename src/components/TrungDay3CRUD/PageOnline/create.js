@@ -5,21 +5,19 @@ import axios from "axios";
 
 const Create = () => {
   const navigate = useNavigate();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [checkbox, setCheckbox] = useState(false);
+  const [objEmployee, setObjEmployee] = useState({
+    firstName: "",
+    lastName: "",
+    checkbox: false,
+  });
 
   const postData = () => {
     axios
       .post(
         `https://637ee225cfdbfd9a63b9007d.mockapi.io/api/employee/employee`,
-        {
-          firstName,
-          lastName,
-          checkbox,
-        }
+        objEmployee
       )
-      .then(() => navigate("/read"));
+      .then(() => navigate("/index"));
   };
 
   return (
@@ -27,24 +25,39 @@ const Create = () => {
       <Form.Field>
         <label>First Name</label>
         <input
-          onChange={(e) => setFirstName(e.target.value)}
+          onChange={(e) =>
+            setObjEmployee({
+              ...objEmployee,
+              firstName: e.target.value,
+            })
+          }
           placeholder="First Name"
         />
       </Form.Field>
       <Form.Field>
         <label>Last Name</label>
         <input
-          onChange={(e) => setLastName(e.target.value)}
+          onChange={(e) =>
+            setObjEmployee({
+              ...objEmployee,
+              lastName: e.target.value,
+            })
+          }
           placeholder="Last Name"
         />
       </Form.Field>
       <Form.Field>
         <Checkbox
           label="I agree to the Terms and Conditions"
-          onChange={(e) => setCheckbox(!checkbox)}
+          onChange={() =>
+            setObjEmployee({
+              ...objEmployee,
+              checkbox: !objEmployee.checkbox,
+            })
+          }
         />
       </Form.Field>
-      <Button onClick={() => navigate("/read")} type="button">
+      <Button onClick={() => navigate("/index")} type="button">
         Back
       </Button>
       <Button onClick={postData} type="submit">

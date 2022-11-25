@@ -5,13 +5,13 @@ const data = [
   {
     firstName: "Trung",
     lastName: "Chi Nguyen",
-    checkbox: true,
+    checkbox: false,
     id: 1,
   },
   {
     firstName: "Toan",
     lastName: "Nguyen",
-    checkbox: true,
+    checkbox: false,
     id: 2,
   },
   {
@@ -28,24 +28,22 @@ const data = [
   },
   {
     firstName: "Gandaf",
-    lastName: "iajsdf",
+    lastName: "Kenedy",
     checkbox: true,
     id: 5,
   },
 ];
 
-export default function ReadLocal() {
+export default function IndexLocal() {
   const [localData, setLocalData] = useState(data);
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [checkbox, setCheckbox] = useState(false);
-  const [id, setId] = useState();
+  const [objEmployee, setObjEmployee] = useState({
+    firstName: "",
+    lastName: "",
+    checkbox: false,
+  });
 
   const setData = (data) => {
-    setId(data.id);
-    setFirstName(data.firstName);
-    setLastName(data.lastName);
-    setCheckbox(data.checkbox);
+    setObjEmployee(data);
   };
 
   const onDelete = (id) => {
@@ -55,41 +53,27 @@ export default function ReadLocal() {
     clearInputForm();
   };
 
-  const handleSubmit = () => {
+  const handleCreateOrUpdate = () => {
     let newId = Date.now();
-    if (id) {
-      newId = id;
+    if (objEmployee.id) {
+      newId = objEmployee.id;
       setLocalData((prev) => {
         return prev.map((item) =>
-          item.id === id
-            ? {
-                firstName: firstName,
-                lastName: lastName,
-                checkbox: checkbox,
-                id: newId,
-              }
-            : item
+          item.id === objEmployee.id ? objEmployee : item
         );
       });
     } else {
-      setLocalData([
-        ...localData,
-        {
-          firstName: firstName,
-          lastName: lastName,
-          checkbox: checkbox,
-          id: newId,
-        },
-      ]);
+      setLocalData(() => [...localData, { ...objEmployee, id: newId }]);
     }
     clearInputForm();
   };
 
   const clearInputForm = () => {
-    setId("");
-    setFirstName("");
-    setLastName("");
-    setCheckbox(false);
+    setObjEmployee({
+      firstName: "",
+      lastName: "",
+      checkbox: false,
+    });
   };
 
   return (
@@ -98,27 +82,42 @@ export default function ReadLocal() {
         <Form.Field>
           <label>First Name</label>
           <input
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            value={objEmployee.firstName}
+            onChange={(e) =>
+              setObjEmployee({
+                ...objEmployee,
+                firstName: e.target.value,
+              })
+            }
             placeholder="First Name"
           />
         </Form.Field>
         <Form.Field>
           <label>Last Name</label>
           <input
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            value={objEmployee.lastName}
+            onChange={(e) =>
+              setObjEmployee({
+                ...objEmployee,
+                lastName: e.target.value,
+              })
+            }
             placeholder="Last Name"
           />
         </Form.Field>
         <Form.Field>
           <Checkbox
-            checked={checkbox}
+            checked={objEmployee.checkbox}
             label="I agree to the Terms and Conditions"
-            onChange={(e) => setCheckbox(!checkbox)}
+            onChange={(e) =>
+              setObjEmployee({
+                ...objEmployee,
+                checkbox: !objEmployee.checkbox,
+              })
+            }
           />
         </Form.Field>
-        <Button onClick={handleSubmit} type="submit">
+        <Button onClick={handleCreateOrUpdate} type="button">
           Submit
         </Button>
       </Form>
