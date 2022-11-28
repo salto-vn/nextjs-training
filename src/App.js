@@ -9,6 +9,7 @@ import Contact from "./pages/DucAnh/Contact";
 import Heading from "components/DucAnh/Heading";
 import Paragraph from "components/DucAnh/Paragraph";
 import GlobalStyle from "components/DucAnh/GlobalStyle";
+import Button from "components/DucAnh/Button";
 
 function App() {
   return (
@@ -48,6 +49,9 @@ function App() {
               <div>Item 2</div>
             </div>
           </GlobalStyle>
+
+          <Button />
+          <Button primary />
         </div>
       </header>
     </div>
