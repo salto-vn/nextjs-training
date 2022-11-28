@@ -7,6 +7,8 @@ import Home from "./pages/DucAnh/Home";
 import News from "./pages/DucAnh/News";
 import Contact from "./pages/DucAnh/Contact";
 import Heading from "components/DucAnh/Heading";
+import Paragraph from "components/DucAnh/Paragraph";
+import GlobalStyle from "components/DucAnh/GlobalStyle";
 
 function App() {
   return (
@@ -37,7 +39,15 @@ function App() {
             <Route path="/contact" element={<Contact />} />
           </Routes>
 
-          <Heading />
+          <GlobalStyle>
+            <Heading />
+            <Paragraph />
+
+            <div className="d-flex">
+              <div>Item 1</div>
+              <div>Item 2</div>
+            </div>
+          </GlobalStyle>
         </div>
       </header>
     </div>

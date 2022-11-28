@@ -1,5 +1,5 @@
-import "./Heading.css";
+import styles from "./Heading.module.css";
 
 export default function Heading() {
-  return <h1 className="heading">HELLO WOLRD</h1>;
+  return <h1 className={styles.headingSomeThing}>Heading</h1>;
 }
