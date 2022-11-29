@@ -8,7 +8,7 @@ export default function Login() {
   return (
     <div className={clsx(styles.loginPage)}>
       <div className={clsx(styles.pageContent)}>
-        <div>
+        <div className={clsx(styles.titleContent)}>
           <LockIcon />
           <h3>Sign in</h3>
         </div>

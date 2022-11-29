@@ -10,16 +10,29 @@
     height: 300px;
     word-break: break-all;
 
-    .emailInput {
-      width: 100%;
+    .titleContent {
+      h3 {
+        margin: 0px;
+      }
     }
 
-    .passwordInput {
-      width: 100%;
-    }
+    .loginForm {
+      margin-top: 10px;
 
-    .signInButton {
-      width: 100%;
+      .emailInput {
+        width: 100%;
+        margin: 5px;
+      }
+
+      .passwordInput {
+        width: 100%;
+        margin: 5px;
+      }
+
+      .signInButton {
+        width: 100%;
+        margin: 5px;
+      }
     }
   }
 }
