@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import LockIcon from "@mui/icons-material/Lock";
 import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import styles from "../../assets/scss/pages/_login.module.scss";
 
 export default function Login() {
@@ -26,6 +27,9 @@ export default function Login() {
             type="password"
             autoComplete="current-password"
           />
+          <Button className={clsx(styles.signInButton)} variant="contained">
+            Sign in
+          </Button>
         </div>
       </div>
     </div>
