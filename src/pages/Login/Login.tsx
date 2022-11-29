@@ -16,13 +16,11 @@ export default function Login() {
           <TextField
             className={clsx(styles.emailInput)}
             required
-            id="outlined-required"
             label="Email Address"
             defaultValue="admin@gmail.com"
           />
           <TextField
             className={clsx(styles.passwordInput)}
-            id="outlined-password-input"
             label="Password"
             type="password"
             autoComplete="current-password"
