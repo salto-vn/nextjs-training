@@ -1,0 +1,38 @@
+.loginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+  .pageContent {
+    text-align: center;
+    max-width: 300px;
+    height: 300px;
+    word-break: break-all;
+
+    .titleContent {
+      h3 {
+        margin: 0px;
+      }
+    }
+
+    .loginForm {
+      margin-top: 10px;
+
+      .emailInput {
+        width: 100%;
+        margin: 5px;
+      }
+
+      .passwordInput {
+        width: 100%;
+        margin: 5px;
+      }
+
+      .signInButton {
+        width: 100%;
+        margin: 5px;
+      }
+    }
+  }
+}
