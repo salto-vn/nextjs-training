@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import "./assets/scss/index.scss";
-import App from "./App";
+import Router from "./Router";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
@@ -10,9 +10,9 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Router>
-      <App />
-    </Router>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
